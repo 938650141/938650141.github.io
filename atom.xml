@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-09-16T08:28:11.383Z</updated>
+    <updated>2020-09-17T14:20:50.551Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -11,35 +11,38 @@
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
     <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://938650141.github.io/post/hello-gridea/</id>
-        <link href="https://938650141.github.io/post/hello-gridea/">
+        <title type="html"><![CDATA[[LeetCode每日刷题]2020.09.17]]></title>
+        <id>https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200917/</id>
+        <link href="https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200917/">
         </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+        <updated>2020-09-17T14:08:47.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>No.15 三数之和<br>
+给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。<br>
+注意：答案中不可以包含重复的三元组。</p>
+</blockquote>
+<p>（参考LeetCode题解）<br>
+首先进行排序，然后用双指针求解，这种方法能够<strong>去除重复解</strong><br>
+复杂度O(NlogN)</p>
+<p>代码：<br>
+<code>class Solution { public: vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) { sort(nums.begin(),nums.end()); vector&lt;vector&lt;int&gt;&gt;ans; if(nums.size()&lt;3) return ans; for(int i=0;i&lt;nums.size();i++){ if(nums[i]&gt;0) return ans; if(i&gt;0 &amp;&amp; nums[i]==nums[i-1]) continue; int l=i+1,r=nums.size()-1; while(l&lt;r){ if(nums[i]+nums[l]+nums[r]==0){ ans.push_back(vector&lt;int&gt;({nums[i],nums[l],nums[r]})); while(l&lt;r &amp;&amp; nums[l]==nums[l+1]) l++; while(l&lt;r &amp;&amp; nums[r]==nums[r-1]) r--; l++,r--; }else{ if(nums[i]+nums[l]+nums[r]&gt;0) r--; else l++; } } } return ans; } };</code></p>
+<blockquote>
+<p>No.11 盛最多水的容器<br>
+给你 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
+</blockquote>
+<p>双指针分别在左右端点，每次的解是min(a[l],a[r])*(r-l)，可以考虑到当左右端点移动时，底长会变小，而使答案变大的唯一可能是选择移动的端点是高度会变高的点<br>
+复杂度O(N)</p>
+<p><code>class Solution { public: int maxArea(vector&lt;int&gt;&amp; height) { int l=0,r=height.size()-1; int ans=0; while(l&lt;=r){ ans=max(ans,min(height[l],height[r])*(r-l)); if(height[l]&gt;height[r]) r--; else l++; } return ans; } };</code></p>
+<blockquote>
+<p>No.685 冗余连接 II<br>
+在本问题中，有根树指满足以下条件的有向图。该树只有一个根节点，所有其他节点都是该根节点的后继。每一个节点只有一个父节点，除了根节点没有父节点。<br>
+输入一个有向图，该图由一个有着N个节点 (节点值不重复1, 2, ..., N) 的树及一条附加的边构成。附加的边的两个顶点包含在1到N中间，这条附加的边不属于树中已存在的边。<br>
+结果图是一个以边组成的二维数组。 每一个边 的元素是一对 [u, v]，用以表示有向图中连接顶点 u 和顶点 v 的边，其中 u 是 v 的一个父节点。<br>
+返回一条能删除的边，使得剩下的图是有N个节点的有根树。若有多个答案，返回最后出现在给定二维数组的答案。</p>
+</blockquote>
+<p>最多1000个顶点，也就是最多1000条边，每次从后到前选择一个边进行删除，检查删除后的图是否符合无环且所有端点连通形成有根树<br>
+复杂度O(N^2)</p>
+<p><code>class Solution { public: int fa[1005]; int cnt[1005]; int get(int x){ if(x==fa[x]) return x; return fa[x]=get(fa[x]); } void merge(int x,int y){ fa[get(x)]=get(y); } bool check(int x,vector&lt;vector&lt;int&gt;&gt;&amp; edges){ for(int i=1;i&lt;=1000;i++) fa[i]=i,cnt[i]=0; for(int i=0;i&lt;edges.size();i++){ if(i!=x){ if(get(edges[i][0])==get(edges[i][1])) return false; merge(edges[i][0],edges[i][1]); cnt[edges[i][1]]++; } } for(int i=1;i&lt;=edges.size();i++) if(cnt[i]&gt;1) return false; int nowr=get(1); int ans=0; for(int i=1;i&lt;=edges.size();i++) if(get(i)==nowr) ans++; return ans==(int)edges.size(); } vector&lt;int&gt; findRedundantDirectedConnection(vector&lt;vector&lt;int&gt;&gt;&amp; edges) { for(int i=edges.size()-1;i&gt;=0;i--){ if(check(i,edges)) return edges[i]; } vector&lt;int&gt;ans; return ans; } };</code></p>
 ]]></content>
     </entry>
 </feed>
