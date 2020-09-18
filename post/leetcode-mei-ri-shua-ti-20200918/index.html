@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[LeetCode每日刷题]2020.09.18 | 独木舟游四海</title>
-<link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1600387111383">
+<link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1600387200510">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://938650141.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="[LeetCode每日刷题]2020.09.18 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
@@ -28,7 +28,7 @@ public:
       <div class="main-content">
         <div class="site-header">
   <a href="https://938650141.github.io">
-  <img class="avatar" src="https://938650141.github.io/images/avatar.png?v=1600387111383" alt="">
+  <img class="avatar" src="https://938650141.github.io/images/avatar.png?v=1600387200510" alt="">
   </a>
   <h1 class="site-title">
     独木舟游四海
@@ -115,8 +115,8 @@ public:
 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
 </blockquote>
 <p>dp[i][j]表示i起始j终止的子串是否是回文串<br>
-当j-i<mark>0表示i到j只有一个字符显然是回文串<br>
-当j-i</mark>1表示i到j只有两个字符只需检查这两个字符是否是回文子串<br>
+当j-i=0表示i到j只有一个字符显然是回文串<br>
+当j-i=1表示i到j只有两个字符只需检查这两个字符是否是回文子串<br>
 其余的情况在检查第i个字符和第j个字符是否相同的基础上（首尾字符相同），看一看去掉这两个字符是否是回文子串</p>
 <pre><code>class Solution {
     public String longestPalindrome(String s) {
