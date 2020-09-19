@@ -2,24 +2,20 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>[LeetCode每日刷题]2020.09.18 | 独木舟游四海</title>
+<title>[HackerRank]Reverse Shuffle Merge题解 | 独木舟游四海</title>
 <link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1600487122583">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://938650141.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="[LeetCode每日刷题]2020.09.18 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="[HackerRank]Reverse Shuffle Merge题解 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-No.47 全排列 II
-给定一个可包含重复数字的序列，返回所有不重复的全排列。
-
-排序后用next_permutation()函数即可
-class Solution {
-public:
-    vector&lt;vector&lt;i..." />
-    <meta name="keywords" content="LeetCode每日刷题" />
+    <meta name="description" content="给定一个字符串的翻转字符串和乱序字符串，然后按照两个字符串的顺序不变的情况下进行合并得到一个合并字符串。
+询问合并字符串中字典序最小的原字符串。
+根据题意原字符串中的每个字符必定在给定的合并字符串中出现两次。
+所以统计合并字符串中每个字符的..." />
+    <meta name="keywords" content="HackerRank" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -75,81 +71,81 @@ public:
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              [LeetCode每日刷题]2020.09.18
+              [HackerRank]Reverse Shuffle Merge题解
             </h2>
             <div class="post-info">
               <span>
-                2020-09-18
+                2020-09-19
               </span>
               <span>
                 3 min read
               </span>
               
-                <a href="https://938650141.github.io/tag/DuG3rB5td/" class="post-tag">
-                  # LeetCode每日刷题
+                <a href="https://938650141.github.io/tag/B1vhuVlBw/" class="post-tag">
+                  # HackerRank
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>No.47 全排列 II<br>
-给定一个可包含重复数字的序列，返回所有不重复的全排列。</p>
-</blockquote>
-<p>排序后用next_permutation()函数即可</p>
-<pre><code>class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; permuteUnique(vector&lt;int&gt;&amp; nums) {
-        vector&lt;vector&lt;int&gt;&gt;ans;
-        sort(nums.begin(),nums.end());
-        do{
-            ans.push_back(nums);
-        }while(next_permutation(nums.begin(),nums.end()));
-        return ans;
+                <p>给定一个字符串的翻转字符串和乱序字符串，然后按照两个字符串的顺序不变的情况下进行合并得到一个合并字符串。<br>
+询问合并字符串中字典序最小的原字符串。<br>
+根据题意原字符串中的每个字符必定在给定的合并字符串中出现两次。<br>
+所以统计合并字符串中每个字符的出现次数，最后将每个字符的出现次数/2就是原字符串中所有的字符。<br>
+但问题在于如何确定最小字典序原字符串字符的顺序。<br>
+我的解决策略是通过二分每次找到最小的合法的位置能使其左侧字符均包含当前需要的所有字符，然后只需要从小到大字符的队列，将其合法右侧的字符位置出队，判断需要当前字符，当前字符的最大位置是否在合法区间中，如果找到就进行下一次的二分合法区间，找寻下一个字符。</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+// Complete the reverseShuffleMerge function below.
+int cnt[26];
+int sum[10005][26];
+queue&lt;int&gt;q[26];
+bool check(int x){
+    for(int i=0;i&lt;26;i++) if(sum[x][i]&lt;cnt[i]) return false;
+    return true;
+}
+string reverseShuffleMerge(string s) {
+    for(int i=0;i&lt;(int)s.size();i++){
+        cnt[s[i]-'a']++;
+        sum[i][s[i]-'a']++;
+        for(int j=0;j&lt;26;j++) if(i!=0) sum[i][j]+=sum[i-1][j];
     }
-};
-</code></pre>
-<blockquote>
-<p>No.5 最长回文子串<br>
-给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
-</blockquote>
-<p>dp[i][j]表示i起始j终止的子串是否是回文串<br>
-当j-i=0表示i到j只有一个字符显然是回文串<br>
-当j-i=1表示i到j只有两个字符只需检查这两个字符是否是回文子串<br>
-其余的情况在检查第i个字符和第j个字符是否相同的基础上（首尾字符相同），看一看去掉这两个字符是否是回文子串</p>
-<pre><code>class Solution {
-    public String longestPalindrome(String s) {
-        int n=s.length();
-        boolean[][] dp=new boolean[n][n];
-        String ans=&quot;&quot;;
-        for(int l=0;l&lt;n;l++){
-            for(int i=0;i+l&lt;n;i++){
-                int j=i+l;
-                if(l==0) dp[i][j]=true;
-                else if(l==1) dp[i][j]=(s.charAt(i)==s.charAt(j));
-                else dp[i][j]=(s.charAt(i)==s.charAt(j) &amp;&amp; dp[i+1][j-1]);
-                if(dp[i][j] &amp;&amp; l+1&gt;ans.length()){
-                    ans=s.substring(i,i+l+1);
-                }
+    for(int i=(int)s.size()-1;i&gt;=0;i--) q[s[i]-'a'].push(i);
+    for(int i=0;i&lt;26;i++) cnt[i]/=2;
+    string ans;
+    int a=(int)s.size()/2;
+    int last=s.size()-1;
+    while(a--){
+        int l=0,r=last,pos=r;
+        while(l&lt;=r){
+            int m=(l+r)/2;
+            if(check(m)) pos=m,r=m-1;
+            else l=m+1;
+        }
+        for(int i=0;i&lt;26;i++){
+            while(q[i].size() &amp;&amp; q[i].front()&gt;last) q[i].pop();
+            if(cnt[i]&gt;0 &amp;&amp; q[i].size() &amp;&amp; q[i].front()&gt;=pos) {
+                ans+=(char)('a'+i);
+                cnt[i]--;
+                last=q[i].front()-1;
+                break;
             }
         }
-        return ans;
     }
+    return ans;
 }
-</code></pre>
-<blockquote>
-<p>No.31 下一个排列<br>
-实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。<br>
-如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。</p>
-</blockquote>
-<p>也是使用next_permutation()</p>
-<pre><code>class Solution {
-public:
-    void nextPermutation(vector&lt;int&gt;&amp; nums) {
-        if(!next_permutation(nums.begin(),nums.end())) sort(nums.begin(),nums.end());
-    }
-};
+
+int main()
+{
+    string s;
+    cin&gt;&gt;s;
+    cout&lt;&lt;reverseShuffleMerge(s);
+    return 0;
+}
+
 </code></pre>
 
               </div>
@@ -163,9 +159,9 @@ public:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200917/">
+            <a href="https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200918/">
               <h3 class="post-title">
-                [LeetCode每日刷题]2020.09.17
+                [LeetCode每日刷题]2020.09.18
               </h3>
             </a>
           </div>
