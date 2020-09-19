@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-09-19T13:51:44.218Z</updated>
+    <updated>2020-09-19T14:09:44.219Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -10,6 +10,116 @@
     <logo>https://938650141.github.io/images/avatar.png</logo>
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
+    <entry>
+        <title type="html"><![CDATA[[HackerRank]Absolute Permutation题解]]></title>
+        <id>https://938650141.github.io/post/hackerrankabsolute-permutation-ti-jie/</id>
+        <link href="https://938650141.github.io/post/hackerrankabsolute-permutation-ti-jie/">
+        </link>
+        <updated>2020-09-19T14:03:39.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>给定n和k询问是否存在一个长度为n的不重复数组与从1到n的序列相同位置一一对应元素的绝对值均为k</p>
+</blockquote>
+<p>本题目参考GeeksforGeeks题解*<br>
+当k为0是显然只需要输出从1到n的序列即可<br>
+更进一步的观察可以相当，n一定是2k的倍数，这样才能满足i和i+k元素的互换，这样i位置是i+k，i+k位置是i，满足了题目的要求。<br>
+于是只需要判断好是否满足条件直接模拟一下输出答案即可</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+vector&lt;string&gt; split_string(string);
+
+// Complete the absolutePermutation function below.
+vector&lt;int&gt; absolutePermutation(int n, int k) {
+    vector&lt;int&gt;ans;
+    if(k==0){
+        for(int i=1;i&lt;=n;i++) ans.push_back(i);
+        return ans;
+    }
+    if(n%(k*2)!=0){
+        ans.push_back(-1);
+        return ans;
+    }
+    else{
+        for(int i=1;i&lt;=n;i++){
+            if(((i-1)/k)%2==0) ans.push_back(i+k);
+            else ans.push_back(i-k);
+        }
+        return ans;
+    }
+    return ans;
+}
+
+int main()
+{
+    ofstream fout(getenv(&quot;OUTPUT_PATH&quot;));
+
+    int t;
+    cin &gt;&gt; t;
+    cin.ignore(numeric_limits&lt;streamsize&gt;::max(), '\n');
+
+    for (int t_itr = 0; t_itr &lt; t; t_itr++) {
+        string nk_temp;
+        getline(cin, nk_temp);
+
+        vector&lt;string&gt; nk = split_string(nk_temp);
+
+        int n = stoi(nk[0]);
+
+        int k = stoi(nk[1]);
+
+        vector&lt;int&gt; result = absolutePermutation(n, k);
+
+        for (int i = 0; i &lt; result.size(); i++) {
+            fout &lt;&lt; result[i];
+
+            if (i != result.size() - 1) {
+                fout &lt;&lt; &quot; &quot;;
+            }
+        }
+
+        fout &lt;&lt; &quot;\n&quot;;
+    }
+
+    fout.close();
+
+    return 0;
+}
+
+vector&lt;string&gt; split_string(string input_string) {
+    string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &amp;x, const char &amp;y) {
+        return x == y and x == ' ';
+    });
+
+    input_string.erase(new_end, input_string.end());
+
+    while (input_string[input_string.length() - 1] == ' ') {
+        input_string.pop_back();
+    }
+
+    vector&lt;string&gt; splits;
+    char delimiter = ' ';
+
+    size_t i = 0;
+    size_t pos = input_string.find(delimiter);
+
+    while (pos != string::npos) {
+        splits.push_back(input_string.substr(i, pos - i));
+
+        i = pos + 1;
+        pos = input_string.find(delimiter, i);
+    }
+
+    splits.push_back(input_string.substr(i, min(pos, input_string.length()) - i + 1));
+
+    return splits;
+}
+
+</code></pre>
+<hr>
+<p>*https://www.geeksforgeeks.org/k-difference-permutation/</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[[LeetCode每日刷题]2020.09.19]]></title>
         <id>https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200919/</id>
