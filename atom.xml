@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-09-20T06:36:55.566Z</updated>
+    <updated>2020-09-20T08:00:04.832Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -16,9 +16,9 @@
         <link href="https://938650141.github.io/post/leetcode-zhou-sai-di-207-chang-zhou-sai/">
         </link>
         <updated>2020-09-20T06:30:30.000Z</updated>
-        <content type="html"><![CDATA[<p>(5519. 重新排列单词间的空格)[https://leetcode-cn.com/contest/weekly-contest-207/problems/rearrange-spaces-between-words/]<br>
+        <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/contest/weekly-contest-207/problems/rearrange-spaces-between-words/">5519. 重新排列单词间的空格</a><br>
 略</p>
-<p>(5520. 拆分字符串使唯一子字符串的数目最大)[https://leetcode-cn.com/problems/split-a-string-into-the-max-number-of-unique-substrings/]</p>
+<p><a href="https://leetcode-cn.com/problems/split-a-string-into-the-max-number-of-unique-substrings/">5520. 拆分字符串使唯一子字符串的数目最大</a></p>
 <p>优化暴力，暴力循环分割位置的集合，检查是否合法，逆向循环进行优化；</p>
 <pre><code>class Solution {
 public:
@@ -55,7 +55,7 @@ public:
     }
 };
 </code></pre>
-<p>(5521. 矩阵的最大非负积)[https://leetcode-cn.com/problems/maximum-non-negative-product-in-a-matrix/]</p>
+<p><a href="https://leetcode-cn.com/problems/maximum-non-negative-product-in-a-matrix/">5521. 矩阵的最大非负积</a></p>
 <p>二维dp，注意边界</p>
 <pre><code>class Solution {
 public:
@@ -89,8 +89,8 @@ public:
     }
 };
 </code></pre>
-<p>(5522. 连通两组点的最小成本)[https://leetcode-cn.com/problems/minimum-cost-to-connect-two-groups-of-points/]</p>
-<p>参考(lucifer1004的题解)[https://cp-wiki.vercel.app/tutorial/leetcode/WC207/#problem-d-%E8%BF%9E%E9%80%9A%E4%B8%A4%E7%BB%84%E7%82%B9%E7%9A%84%E6%9C%80%E5%B0%8F%E6%88%90%E6%9C%AC]</p>
+<p><a href="https://leetcode-cn.com/problems/minimum-cost-to-connect-two-groups-of-points/">5522. 连通两组点的最小成本</a></p>
+<p>参考<a href="https://cp-wiki.vercel.app/tutorial/leetcode/WC207/#problem-d-%E8%BF%9E%E9%80%9A%E4%B8%A4%E7%BB%84%E7%82%B9%E7%9A%84%E6%9C%80%E5%B0%8F%E6%88%90%E6%9C%AC">lucifer1004的题解</a></p>
 <pre><code>const int INF = 0x3f3f3f3f;
 
 class Solution {
