@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-09-27T04:22:45.585Z</updated>
+    <updated>2020-09-27T04:33:44.841Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -10,6 +10,21 @@
     <logo>https://938650141.github.io/images/avatar.png</logo>
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
+    <entry>
+        <title type="html"><![CDATA[[每周总结]第二周总结(2020.09.21-2020.09.27)]]></title>
+        <id>https://938650141.github.io/post/mei-zhou-zong-jie-di-er-zhou-zong-jie-20200921-20200927/</id>
+        <link href="https://938650141.github.io/post/mei-zhou-zong-jie-di-er-zhou-zong-jie-20200921-20200927/">
+        </link>
+        <updated>2020-09-27T04:23:40.000Z</updated>
+        <content type="html"><![CDATA[<p>本周比较颓废，主要是去给眼睛测了下眼压，验了下光<br>
+在网上配的眼镜今天(9.27)才到<br>
+然后比赛Rank71，目前竞赛排名400、题目排名2w2<br>
+HackerRank目前太懒了，没去做<br>
+现在我是想去先学习前端吧，先基础搞一下HTML+CSS+JavaScript</p>
+<p>请注意自己目前的状态！<br>
+等待下周的总结的到来</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[[每周总结]第一周总结(2020.09.14~2020.09.20)]]></title>
         <id>https://938650141.github.io/post/mei-zhou-zong-jie-di-yi-zhou-zong-jie-20200914~20200920/</id>
