@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-09-27T04:33:44.841Z</updated>
+    <updated>2020-10-04T05:38:56.276Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -10,42 +10,6 @@
     <logo>https://938650141.github.io/images/avatar.png</logo>
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
-    <entry>
-        <title type="html"><![CDATA[[每周总结]第二周总结(2020.09.21-2020.09.27)]]></title>
-        <id>https://938650141.github.io/post/mei-zhou-zong-jie-di-er-zhou-zong-jie-20200921-20200927/</id>
-        <link href="https://938650141.github.io/post/mei-zhou-zong-jie-di-er-zhou-zong-jie-20200921-20200927/">
-        </link>
-        <updated>2020-09-27T04:23:40.000Z</updated>
-        <content type="html"><![CDATA[<p>本周比较颓废，主要是去给眼睛测了下眼压，验了下光<br>
-在网上配的眼镜今天(9.27)才到<br>
-然后比赛Rank71，目前竞赛排名400、题目排名2w2<br>
-HackerRank目前太懒了，没去做<br>
-现在我是想去先学习前端吧，先基础搞一下HTML+CSS+JavaScript</p>
-<p>请注意自己目前的状态！<br>
-等待下周的总结的到来</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[[每周总结]第一周总结(2020.09.14~2020.09.20)]]></title>
-        <id>https://938650141.github.io/post/mei-zhou-zong-jie-di-yi-zhou-zong-jie-20200914~20200920/</id>
-        <link href="https://938650141.github.io/post/mei-zhou-zong-jie-di-yi-zhou-zong-jie-20200914~20200920/">
-        </link>
-        <updated>2020-09-20T07:32:57.000Z</updated>
-        <content type="html"><![CDATA[<p>这周leetcode双周赛Rank33、leetcode周赛Rank700（体验有点糟糕）、秋季个人赛Rank504（差一点就进前500了，心态也很糟糕）、战队赛只是签了个到，每日刷题共完成6天，从17号开始在我的博客上记录我的刷题记录。不过记录的格式还有待改进，等接下来坚持记录改进一下博客每日刷题记录的格式，规范化，简单化。<br>
-之前有次周赛给了份Akuna Capital的简历投递机会，我看到有C++的实习岗位，投递了下试了试，算是给以后实习的尝试开一个头，然后回了封邮件，要在10月2日之前进行笔试，然后就提到了HackerRank。<br>
-顺便还在实习僧APP上投了份国子软件的简历。<br>
-HackerRank这个网站确实有意思，以后也可以坚持刷下去，我觉得算法这个东西，有意思就有意思在思维上，但我觉得如果强制去追求算法上的成果其实就比较难受，所以这个东西就是要持之以恒地学习，有需求驱动，但不能犯成果急性病，要慢慢来，要体会到算法的有趣之处。</p>
-<p>目前记录下来相关数据：<br>
-leetcode题量排名23897、周赛排名497<br>
-hackerrank排名207765</p>
-<p>目前我定下来的每周任务：<br>
-<strong>leetcode每日刷题（3道新题+签到）</strong><br>
-<strong>leetcode周赛/双周赛</strong><br>
-<strong>HackerRank刷排名</strong></p>
-<p>接下来一周暂定任务：<br>
-<strong>复习C++</strong>、<strong>学习下linux知识</strong>应对面试，尽量在9月30号左右去进行笔试吧</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[[LeetCode周赛]第207场周赛]]></title>
         <id>https://938650141.github.io/post/leetcode-zhou-sai-di-207-chang-zhou-sai/</id>
