@@ -2,23 +2,24 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>[LeetCode每日刷题]2020.09.19 | 独木舟游四海</title>
+<title>[蓝桥杯]一周备战第十一届蓝桥杯Oct.11~17 | 独木舟游四海</title>
 <link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1602414395859">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://938650141.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="[LeetCode每日刷题]2020.09.19 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="[蓝桥杯]一周备战第十一届蓝桥杯Oct.11~17 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-No.404 左叶子之和
-计算给定二叉树的所有左叶子之和。
-
-递归一遍，如果左右儿子不存在且当前结点是父亲节点的左儿子就加上当前结点的数字，最后返回答案即可。
-/**
- * Definition for a binary tree nod..." />
-    <meta name="keywords" content="LeetCode" />
+    <meta name="description" content="1.基础算法
+2.基础数据结构
+3.搜索
+4.数学知识
+5.动态规划
+6.图论
+7.总结
+" />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -74,121 +75,27 @@ No.404 左叶子之和
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              [LeetCode每日刷题]2020.09.19
+              [蓝桥杯]一周备战第十一届蓝桥杯Oct.11~17
             </h2>
             <div class="post-info">
               <span>
-                2020-09-19
+                2020-10-11
               </span>
               <span>
-                3 min read
+                1 min read
               </span>
-              
-                <a href="https://938650141.github.io/tag/t5WTedVsn/" class="post-tag">
-                  # LeetCode
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>No.404 左叶子之和<br>
-计算给定二叉树的所有左叶子之和。</p>
-</blockquote>
-<p>递归一遍，如果左右儿子不存在且当前结点是父亲节点的左儿子就加上当前结点的数字，最后返回答案即可。</p>
-<pre><code>/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    int ans=0;
-    void dfs(TreeNode* o,int w){
-        if(o-&gt;left==nullptr &amp;&amp; o-&gt;right==nullptr){
-            if(w==1) ans+=o-&gt;val;
-        }else{
-            if(o-&gt;left!=nullptr) dfs(o-&gt;left,1);
-            if(o-&gt;right!=nullptr) dfs(o-&gt;right,0);
-        }
-    }
-    int sumOfLeftLeaves(TreeNode* root) {
-        if(root==nullptr) return 0;
-        dfs(root,-1);
-        return ans;
-    }
-};
-</code></pre>
-<blockquote>
-<p>No.2 两数相加<br>
-给定两个链表代表两个数，求两个数求和后的链表</p>
-</blockquote>
-<pre><code>/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode p=l1,q=l2,cur=dummyHead;
-        int carry=0;
-        while(p!=null || q!=null){
-            int x=(p!=null)?p.val:0;
-            int y=(q!=null)?q.val:0;
-            int sum=carry+x+y;
-            carry=sum/10;
-            cur.next=new ListNode(sum%10);
-            cur=cur.next;
-            if(p!=null) p=p.next;
-            if(q!=null) q=q.next;
-        }
-        if(carry!=0) cur.next=new ListNode(carry);
-        return dummyHead.next;
-    }
-}
-</code></pre>
-<blockquote>
-<p>No.150 逆波兰表达式求值</p>
-</blockquote>
-<p>栈的应用</p>
-<pre><code>class Solution {
-    public int evalRPN(String[] tokens) {
-        Stack&lt;Integer&gt; s=new Stack&lt;&gt;();
-        Integer a,b;
-        for(int i=0;i&lt;tokens.length;i++){
-            if(tokens[i].equals(&quot;+&quot;)){
-                a=s.pop();
-                b=s.pop();
-                s.push(a+b);
-            }else if(tokens[i].equals(&quot;-&quot;)){
-                a=s.pop();
-                b=s.pop();
-                s.push(b-a);
-            }else if(tokens[i].equals(&quot;*&quot;)){
-                a=s.pop();
-                b=s.pop();
-                s.push(a*b);
-            }else if(tokens[i].equals(&quot;/&quot;)){
-                a=s.pop();
-                b=s.pop();
-                s.push(b/a);
-            }else{
-                s.push(Integer.valueOf(tokens[i]));
-            }
-        }
-        return s.pop();
-    }
-}
-</code></pre>
+                <p>1.基础算法<br>
+2.基础数据结构<br>
+3.搜索<br>
+4.数学知识<br>
+5.动态规划<br>
+6.图论<br>
+7.总结</p>
 
               </div>
               <div class="toc-container">
@@ -201,9 +108,9 @@ class Solution {
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://938650141.github.io/post/hackerrankreverse-shuffle-merge-ti-jie/">
+            <a href="https://938650141.github.io/post/leetcode-zhou-sai-di-207-chang-zhou-sai/">
               <h3 class="post-title">
-                [HackerRank]Reverse Shuffle Merge题解
+                [LeetCode周赛]第207场周赛
               </h3>
             </a>
           </div>

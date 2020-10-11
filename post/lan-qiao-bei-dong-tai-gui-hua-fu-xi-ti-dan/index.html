@@ -2,26 +2,23 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>[LeetCode每日刷题]2020.09.20 | 独木舟游四海</title>
+<title>[蓝桥杯]动态规划复习题单 | 独木舟游四海</title>
 <link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1602414395859">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://938650141.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="[LeetCode每日刷题]2020.09.20 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="[蓝桥杯]动态规划复习题单 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
     <meta name="description" content="
-
-子集
-给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
+连续的子数组和
 
 
-直接循环0~2^n-1，根据位运算得子集放入答案数组中
-class Solution {
-public:
-    vector&lt;vector&..." />
-    <meta name="keywords" content="LeetCode" />
+给定一个包含 非负数 的数组和一个目标 整数 k，编写一个函数来判断该数组是否含有连续的子数组，其大小至少为 2，且总和为 k 的倍数，即总和为 n*k，其中 n 也是一个整数。
+来源：力扣（LeetCode）
+链接：..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -77,115 +74,44 @@ public:
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              [LeetCode每日刷题]2020.09.20
+              [蓝桥杯]动态规划复习题单
             </h2>
             <div class="post-info">
               <span>
-                2020-09-20
+                2020-10-11
               </span>
               <span>
-                3 min read
+                1 min read
               </span>
-              
-                <a href="https://938650141.github.io/tag/t5WTedVsn/" class="post-tag">
-                  # LeetCode
-                </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<ol start="78">
-<li>子集<br>
-给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。</li>
+                <ol start="523">
+<li>连续的子数组和</li>
 </ol>
+<blockquote>
+<p>给定一个包含 非负数 的数组和一个目标 整数 k，编写一个函数来判断该数组是否含有连续的子数组，其大小至少为 2，且总和为 k 的倍数，即总和为 n*k，其中 n 也是一个整数。<br>
+来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/continuous-subarray-sum<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 </blockquote>
-<p>直接循环0~2^n-1，根据位运算得子集放入答案数组中</p>
+<p>注意到前缀和的余数相同的若之前存在则说明存在子数组和。</p>
 <pre><code>class Solution {
 public:
-    vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) {
-        vector&lt;vector&lt;int&gt;&gt;ans;
-        int n=nums.size();
-        for(int i=0;i&lt;(1&lt;&lt;n);i++){
-            vector&lt;int&gt;v;
-            for(int j=0;j&lt;n;j++){
-                if((i&gt;&gt;j)&amp;1) v.push_back(nums[j]);
-            }
-            ans.push_back(v);
+    map&lt;int,int&gt;mp;
+    bool checkSubarraySum(vector&lt;int&gt;&amp; nums, int k) {
+        mp[0]=-1;
+        int sum=0;
+        for(int i=0;i&lt;nums.size();i++){
+            sum+=nums[i];
+            if(k!=0) sum%=k;
+            if(mp.find(sum)!=mp.end()){
+                if(i-mp[sum]&gt;1) return true;
+            }else mp[sum]=i;
         }
-        return ans;
-    }
-};
-</code></pre>
-<blockquote>
-<ol start="112">
-<li>路径总和<br>
-给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</li>
-</ol>
-</blockquote>
-<p>递归到子节点记录路径和是否等于目标和，如果是将flag标记为true<br>
-最后返回flag即可</p>
-<pre><code>/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    bool flag;
-    void dfs(TreeNode* o,int sum,int now){
-        now+=o-&gt;val;
-        if(o-&gt;left==nullptr &amp;&amp; o-&gt;right==nullptr) flag|=(now==sum);
-        else{
-            if(o-&gt;left!=nullptr) dfs(o-&gt;left,sum,now);
-            if(o-&gt;right!=nullptr) dfs(o-&gt;right,sum,now);
-        }
-    }
-    bool hasPathSum(TreeNode* root, int sum) {
-        if(root==nullptr) return false;
-        dfs(root,sum,0);
-        return flag;
-    }
-};
-</code></pre>
-<blockquote>
-<ol start="113">
-<li>路径总和 II<br>
-给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。</li>
-</ol>
-</blockquote>
-<p>上题一样的思路，只不过多维护一个路径数组，标记flag变成数组放入答案中。</p>
-<pre><code>/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; ans;
-    void dfs(TreeNode* o,int sum,vector&lt;int&gt;now,int tmp){
-        now.push_back(o-&gt;val);
-        tmp+=o-&gt;val;
-        if(o-&gt;left==nullptr &amp;&amp; o-&gt;right==nullptr &amp;&amp; tmp==sum){
-            ans.push_back(now);
-        }else{
-            if(o-&gt;left!=nullptr) dfs(o-&gt;left,sum,now,tmp);
-            if(o-&gt;right!=nullptr) dfs(o-&gt;right,sum,now,tmp);
-        }
-    }
-    vector&lt;vector&lt;int&gt;&gt; pathSum(TreeNode* root, int sum) {
-        if(root==nullptr) return ans;
-        dfs(root,sum,{},0);
-        return ans;
+        return false;
     }
 };
 </code></pre>
@@ -201,9 +127,9 @@ public:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://938650141.github.io/post/leetcode-shuang-zhou-sai-di-35-chang-shuang-zhou-sai/">
+            <a href="https://938650141.github.io/post/lan-qiao-bei-yi-zhou-bei-zhan-di-shi-yi-jie-lan-qiao-bei-oct11~17/">
               <h3 class="post-title">
-                [LeetCode双周赛]第35场双周赛
+                [蓝桥杯]一周备战第十一届蓝桥杯Oct.11~17
               </h3>
             </a>
           </div>
