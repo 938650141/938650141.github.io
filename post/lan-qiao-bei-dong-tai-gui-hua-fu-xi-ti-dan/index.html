@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>[蓝桥杯]动态规划复习题单 | 独木舟游四海</title>
-<link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1602414501540">
+<link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1602415506262">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://938650141.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="[蓝桥杯]动态规划复习题单 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
@@ -11,13 +11,12 @@
 
 
 
-    <meta name="description" content="
-连续的子数组和
+    <meta name="description" content="分隔数组以得到最大和
 
-
-给定一个包含 非负数 的数组和一个目标 整数 k，编写一个函数来判断该数组是否含有连续的子数组，其大小至少为 2，且总和为 k 的倍数，即总和为 n*k，其中 n 也是一个整数。
+给出整数数组 A，将该数组分隔为长度最多为 K 的几个（连续）子数组。分隔完成后，每个子数组的中的值都会变为该子数组中的最大值。
+返回给定数组完成分隔后的最大和。
 来源：力扣（LeetCode）
-链接：..." />
+链接：https:/..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -27,7 +26,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://938650141.github.io">
-  <img class="avatar" src="https://938650141.github.io/images/avatar.png?v=1602414501540" alt="">
+  <img class="avatar" src="https://938650141.github.io/images/avatar.png?v=1602415506262" alt="">
   </a>
   <h1 class="site-title">
     独木舟游四海
@@ -81,16 +80,38 @@
                 2020-10-11
               </span>
               <span>
-                1 min read
+                3 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <ol start="523">
-<li>连续的子数组和</li>
-</ol>
+                <p>分隔数组以得到最大和</p>
+<blockquote>
+<p>给出整数数组 A，将该数组分隔为长度最多为 K 的几个（连续）子数组。分隔完成后，每个子数组的中的值都会变为该子数组中的最大值。<br>
+返回给定数组完成分隔后的最大和。<br>
+来源：力扣（LeetCode）<br>
+链接：https://leetcode-cn.com/problems/partition-array-for-maximum-sum<br>
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。<br>
+dp[i]代表前i个元素最大的值，每次转移，只需要K次循环，从dp[i-j]转移过来，维护j长度的子数组最大值</p>
+</blockquote>
+<pre><code>class Solution {
+public:
+    int dp[505];
+    int maxSumAfterPartitioning(vector&lt;int&gt;&amp; arr, int k) {
+        for(int i=0;i&lt;arr.size();i++){
+            int maxTmp=arr[i];
+            dp[i+1]=dp[i]+maxTmp;
+            for(int j=1;j&lt;k;j++){
+                if(i-j&gt;=0) maxTmp=max(maxTmp,arr[i-j]),dp[i+1]=max(dp[i+1],dp[i-j]+maxTmp*(j+1));
+            }
+        }
+        return dp[(int)arr.size()];
+    }
+};
+</code></pre>
+<p>连续的子数组和</p>
 <blockquote>
 <p>给定一个包含 非负数 的数组和一个目标 整数 k，编写一个函数来判断该数组是否含有连续的子数组，其大小至少为 2，且总和为 k 的倍数，即总和为 n*k，其中 n 也是一个整数。<br>
 来源：力扣（LeetCode）<br>
