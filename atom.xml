@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-10-11T11:50:47.759Z</updated>
+    <updated>2020-10-18T12:07:34.616Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -10,78 +10,6 @@
     <logo>https://938650141.github.io/images/avatar.png</logo>
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
-    <entry>
-        <title type="html"><![CDATA[[蓝桥杯]动态规划复习题单]]></title>
-        <id>https://938650141.github.io/post/lan-qiao-bei-dong-tai-gui-hua-fu-xi-ti-dan/</id>
-        <link href="https://938650141.github.io/post/lan-qiao-bei-dong-tai-gui-hua-fu-xi-ti-dan/">
-        </link>
-        <updated>2020-10-11T11:03:47.000Z</updated>
-        <content type="html"><![CDATA[<p>分隔数组以得到最大和</p>
-<blockquote>
-<p>给出整数数组 A，将该数组分隔为长度最多为 K 的几个（连续）子数组。分隔完成后，每个子数组的中的值都会变为该子数组中的最大值。<br>
-返回给定数组完成分隔后的最大和。<br>
-来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/partition-array-for-maximum-sum<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-</blockquote>
-<p>dp[i]代表前i个元素最大的值，每次转移，只需要K次循环，从dp[i-j]转移过来，维护j长度的子数组最大值</p>
-<pre><code>class Solution {
-public:
-    int dp[505];
-    int maxSumAfterPartitioning(vector&lt;int&gt;&amp; arr, int k) {
-        for(int i=0;i&lt;arr.size();i++){
-            int maxTmp=arr[i];
-            dp[i+1]=dp[i]+maxTmp;
-            for(int j=1;j&lt;k;j++){
-                if(i-j&gt;=0) maxTmp=max(maxTmp,arr[i-j]),dp[i+1]=max(dp[i+1],dp[i-j]+maxTmp*(j+1));
-            }
-        }
-        return dp[(int)arr.size()];
-    }
-};
-</code></pre>
-<p>连续的子数组和</p>
-<blockquote>
-<p>给定一个包含 非负数 的数组和一个目标 整数 k，编写一个函数来判断该数组是否含有连续的子数组，其大小至少为 2，且总和为 k 的倍数，即总和为 n*k，其中 n 也是一个整数。<br>
-来源：力扣（LeetCode）<br>
-链接：https://leetcode-cn.com/problems/continuous-subarray-sum<br>
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-</blockquote>
-<p>注意到前缀和的余数相同的若之前存在则说明存在子数组和。</p>
-<pre><code>class Solution {
-public:
-    map&lt;int,int&gt;mp;
-    bool checkSubarraySum(vector&lt;int&gt;&amp; nums, int k) {
-        mp[0]=-1;
-        int sum=0;
-        for(int i=0;i&lt;nums.size();i++){
-            sum+=nums[i];
-            if(k!=0) sum%=k;
-            if(mp.find(sum)!=mp.end()){
-                if(i-mp[sum]&gt;1) return true;
-            }else mp[sum]=i;
-        }
-        return false;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[[蓝桥杯]一周备战第十一届蓝桥杯Oct.11~17]]></title>
-        <id>https://938650141.github.io/post/lan-qiao-bei-yi-zhou-bei-zhan-di-shi-yi-jie-lan-qiao-bei-oct11~17/</id>
-        <link href="https://938650141.github.io/post/lan-qiao-bei-yi-zhou-bei-zhan-di-shi-yi-jie-lan-qiao-bei-oct11~17/">
-        </link>
-        <updated>2020-10-11T10:30:12.000Z</updated>
-        <content type="html"><![CDATA[<p>1.基础算法<br>
-2.基础数据结构<br>
-3.搜索<br>
-4.数学知识<br>
-5.动态规划<br>
-6.图论<br>
-7.总结</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[[LeetCode周赛]第207场周赛]]></title>
         <id>https://938650141.github.io/post/leetcode-zhou-sai-di-207-chang-zhou-sai/</id>
