@@ -1,0 +1,200 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[计算机网络]HTTP学习笔记 | 独木舟游四海</title>
+<link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1604133643806">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://938650141.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="[计算机网络]HTTP学习笔记 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="每一项技术从无到有，逐渐发展的过程需要用历史的眼光去看待。
+最开始的互联网一开始的设想是让远隔两地的人能够相互分享知识，构成WWW，于是有几个最关键的东西就需要确定下来。
+
+内容的格式
+传输的协议
+资源的定位
+
+这三个东西我们可以从两个人的..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://938650141.github.io">
+  <img class="avatar" src="https://938650141.github.io/images/avatar.png?v=1604133643806" alt="">
+  </a>
+  <h1 class="site-title">
+    独木舟游四海
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              [计算机网络]HTTP学习笔记
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-10-31
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>每一项技术从无到有，逐渐发展的过程需要用历史的眼光去看待。<br>
+最开始的互联网一开始的设想是让远隔两地的人能够相互分享知识，构成WWW，于是有几个最关键的东西就需要确定下来。</p>
+<ul>
+<li>内容的格式</li>
+<li>传输的协议</li>
+<li>资源的定位</li>
+</ul>
+<p>这三个东西我们可以从两个人的邮件互通开始看起，两个人想要写邮件互相交流，那就必须知道对方家庭所在地址，这样邮件才能寄到对方的手中，但是仅此并不够，还需要交给指定的通路去寄邮件。如同邮政快递属于社会基础服务一般，我们现在的网路通信，一样是基础的设施，在基础的设施好之后，我们就规定设施的服务按照某一规则来，这就是协议。但是双方通信还需要一致的交流格式及其语言，否则就可能看不懂，这就需要规定内容的格式。<br>
+以上三样基本构成了交流通信的关键。</p>
+<p>我们先从传输的协议看起，这是传输信息中最重要的，也可以说一封邮件的传输，失败的可能性最大应在传输的过程中。</p>
+<p>这个我们就要从计算机网络的模型开始讨论起，但是过于底层的内容应当放在后面，所以我们先从当今网络最重要的网络协议TCP/IP讲起。</p>
+<blockquote>
+<p>计算机与网络设备要相互通信，双方就必须基于相同的方法。比如， 如何探测到通信目标、由哪一边先发起通信、使用哪种语言进行通 信、怎样结束通信等规则都需要事先确定。不同的硬件、操作系统之 间的通信，所有的这一切都需要一种规则。而我们就把这种规则称为 协议（protocol）。</p>
+</blockquote>
+<p>应用层是应用程序层面。<br>
+传输层是交付应用程序数据的控制层面。<br>
+网络层是在逻辑上划分数据单元并进行传递的结构层面。<br>
+链路层是在物理上规定各个结点的硬件是如何进行数据交换的硬件层面。</p>
+<p>每一层向下传递则增加首尾部，进行封装。<br>
+反之，亦然。</p>
+<blockquote>
+<p>IP 协议的作用是把各种数据包传送给对方。而要保证确实传送到对方 那里，则需要满足各类条件。其中两个重要的条件是 IP 地址和 MAC 地址（Media Access Control Address）。 IP 地址指明了节点被分配到的地址，MAC 地址是指网卡所属的固定 地址。IP 地址可以和 MAC 地址进行配对。IP 地址可变换，但 MAC 地址基本上不会更改。</p>
+</blockquote>
+<blockquote>
+<p>使用 ARP 协议凭借 MAC 地址进行通信 IP 间的通信依赖 MAC 地址。在网络上，通信的双方在同一局域网 （LAN）内的情况是很少的，通常是经过多台计算机和网络设备中转 才能连接到对方。而在进行中转时，会利用下一站中转设备的 MAC 地址来搜索下一个中转目标。这时，会采用 ARP 协议（Address Resolution Protocol）。ARP 是一种用以解析地址的协议，根据通信方 的 IP 地址就可以反查出对应的 MAC 地址。</p>
+</blockquote>
+<blockquote>
+<p>这种机制称为路由选择（routing），有点像快递公司的送货过程。想 要寄快递的人，只要将自己的货物送到集散中心，就可以知道快递公 司是否肯收件发货，该快递公司的集散中心检查货物的送达地址，明 确下站该送往哪个区域的集散中心。接着，那个区域的集散中心自会 判断是否能送到对方的家中。</p>
+</blockquote>
+<p>因为IP协议不提供可靠的传输，所以需要TCP来进行控制，确保信息的通信正常。</p>
+<blockquote>
+<p>TCP 协议为了更容易传送大数据才把数据分割，而且 TCP 协议能够 确认数据最终是否送达到对方。</p>
+</blockquote>
+<p>通过打招呼的方式，A和B的交流通信要从hello开始一样，A询问B，你能听到我说话吗，B回答能，那你能听到我说话吗，A回答能，之后AB可以进行正常的交流了。<br>
+在TCP中就是三次握手，通过SYN进行询问，ACK应答确认。</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://938650141.github.io/post/leetcode-zhou-sai-di-207-chang-zhou-sai/">
+              <h3 class="post-title">
+                [LeetCode周赛]第207场周赛
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  <a href="https://www.mfwztj.com/" target="_blank"><img src="https://www.mfwztj.com/hit.php?id=yvuxxf&nd=6&style=2" border="0" alt="网站计数器"></a>
+  <a class="rss" href="https://938650141.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
