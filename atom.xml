@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-10-31T09:04:12.438Z</updated>
+    <updated>2020-11-02T03:55:13.654Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -51,6 +51,21 @@
 </blockquote>
 <p>通过打招呼的方式，A和B的交流通信要从hello开始一样，A询问B，你能听到我说话吗，B回答能，那你能听到我说话吗，A回答能，之后AB可以进行正常的交流了。<br>
 在TCP中就是三次握手，通过SYN进行询问，ACK应答确认。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[[蓝桥杯]知识梳理]]></title>
+        <id>https://938650141.github.io/post/lan-qiao-bei-yi-zhou-bei-zhan-di-shi-yi-jie-lan-qiao-bei-oct11~17/</id>
+        <link href="https://938650141.github.io/post/lan-qiao-bei-yi-zhou-bei-zhan-di-shi-yi-jie-lan-qiao-bei-oct11~17/">
+        </link>
+        <updated>2020-10-11T10:30:12.000Z</updated>
+        <content type="html"><![CDATA[<p>1.基础算法<br>
+2.基础数据结构<br>
+3.搜索<br>
+4.数学知识<br>
+5.动态规划<br>
+6.图论<br>
+7.总结</p>
 ]]></content>
     </entry>
     <entry>
