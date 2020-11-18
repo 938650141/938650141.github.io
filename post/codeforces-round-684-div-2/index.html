@@ -2,21 +2,24 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>[Weekly Summary]Oct.19-25 | 独木舟游四海</title>
+<title>Codeforces Round #684 (Div. 2) | 独木舟游四海</title>
 <link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1605706540963">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://938650141.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="[Weekly Summary]Oct.19-25 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Codeforces Round #684 (Div. 2) | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="再次郑重地将健康放到最重要的位置，没有什么比这个更重要
-注意锻炼身体，重新规划每周的计划。
-本周：
+    <meta name="description" content="A.
+#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
 
-奥可纳面试大失败，要学会重新审视自己，不要再浮躁，要学会静下心来去学点东西了；
-体测完成，其实并没有想象中的能么难受，但要好好锻炼身体啊；..." />
+int main(){
+    int t;
+    cin&gt;&gt;t;
+    wh..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -73,42 +76,68 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              [Weekly Summary]Oct.19-25
+              Codeforces Round #684 (Div. 2)
             </h2>
             <div class="post-info">
               <span>
-                2020-10-25
+                2020-11-18
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>再次郑重地将<strong>健康</strong>放到最重要的位置，没有什么比这个更重要</p>
-<p>注意锻炼身体，重新规划每周的计划。</p>
-<p>本周：</p>
-<ul>
-<li>奥可纳面试大失败，要学会重新审视自己，不要再浮躁，要学会静下心来去学点东西了；</li>
-<li>体测完成，其实并没有想象中的能么难受，但要好好锻炼身体啊；</li>
-<li>LeetCode周赛RK200+，可能又要掉分，不过这次第四题确实没能做出来；</li>
-</ul>
-<p>关于未来的一个粗略的想法：</p>
-<ul>
-<li>考公务员</li>
-<li>考研<br>
-这两个可能是必须要去准备，要开始调整状态。</li>
-</ul>
-<p>关于自身状态：</p>
-<ul>
-<li>希望可以重新获得一种轻快的感觉</li>
-<li>希望可以重新专注</li>
-</ul>
-<p>Best, Future.</p>
-<p>Oct.26 蓝桥杯C/C++ A组 一等奖<br>
-<img src="https://938650141.github.io/post-images/1603706020704.png" alt="" loading="lazy"></p>
+                <p>A.</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+
+int main(){
+    int t;
+    cin&gt;&gt;t;
+    while(t--){
+        int n,c0,c1,h;
+        string s;
+        cin&gt;&gt;n&gt;&gt;c0&gt;&gt;c1&gt;&gt;h&gt;&gt;s;
+        int ans=0;
+        for(int i=0;i&lt;s.size();i++){
+            if(s[i]=='0') ans+=min(c0,c1+h);
+            else ans+=min(c1,c0+h);
+        }
+        cout&lt;&lt;ans&lt;&lt;&quot;\n&quot;;
+    }
+    return 0;
+}
+</code></pre>
+<p>B.</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int a[200005];
+
+int main(){
+    int t;
+    cin&gt;&gt;t;
+    while(t--){
+        int n,k;
+        cin&gt;&gt;n&gt;&gt;k;
+        for(int i=1;i&lt;=n*k;i++){
+            scanf(&quot;%d&quot;,&amp;a[i]);
+        }
+        sort(a+1,a+n*k+1);
+        reverse(a+1,a+n*k+1);
+        int m=n-(n+1)/2+1;
+        long long ans=0;
+        for(int i=m,j=1;j&lt;=k;i+=m,j++) ans+=a[i];
+        cout&lt;&lt;ans&lt;&lt;&quot;\n&quot;;
+    }
+    return 0;
+}
+</code></pre>
 
               </div>
               <div class="toc-container">
@@ -118,6 +147,15 @@
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://938650141.github.io/post/ji-suan-ji-wang-luo-http-xue-xi-bi-ji/">
+              <h3 class="post-title">
+                [计算机网络]HTTP学习笔记
+              </h3>
+            </a>
+          </div>
         
 
         

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-11-15T11:24:14.776Z</updated>
+    <updated>2020-11-18T13:35:44.733Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -10,6 +10,62 @@
     <logo>https://938650141.github.io/images/avatar.png</logo>
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
+    <entry>
+        <title type="html"><![CDATA[Codeforces Round #684 (Div. 2)]]></title>
+        <id>https://938650141.github.io/post/codeforces-round-684-div-2/</id>
+        <link href="https://938650141.github.io/post/codeforces-round-684-div-2/">
+        </link>
+        <updated>2020-11-18T12:55:54.000Z</updated>
+        <content type="html"><![CDATA[<p>A.</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+using namespace std;
+
+int main(){
+    int t;
+    cin&gt;&gt;t;
+    while(t--){
+        int n,c0,c1,h;
+        string s;
+        cin&gt;&gt;n&gt;&gt;c0&gt;&gt;c1&gt;&gt;h&gt;&gt;s;
+        int ans=0;
+        for(int i=0;i&lt;s.size();i++){
+            if(s[i]=='0') ans+=min(c0,c1+h);
+            else ans+=min(c1,c0+h);
+        }
+        cout&lt;&lt;ans&lt;&lt;&quot;\n&quot;;
+    }
+    return 0;
+}
+</code></pre>
+<p>B.</p>
+<pre><code>#include&lt;iostream&gt;
+#include&lt;string&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int a[200005];
+
+int main(){
+    int t;
+    cin&gt;&gt;t;
+    while(t--){
+        int n,k;
+        cin&gt;&gt;n&gt;&gt;k;
+        for(int i=1;i&lt;=n*k;i++){
+            scanf(&quot;%d&quot;,&amp;a[i]);
+        }
+        sort(a+1,a+n*k+1);
+        reverse(a+1,a+n*k+1);
+        int m=n-(n+1)/2+1;
+        long long ans=0;
+        for(int i=m,j=1;j&lt;=k;i+=m,j++) ans+=a[i];
+        cout&lt;&lt;ans&lt;&lt;&quot;\n&quot;;
+    }
+    return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[[计算机网络]HTTP学习笔记]]></title>
         <id>https://938650141.github.io/post/ji-suan-ji-wang-luo-http-xue-xi-bi-ji/</id>
@@ -780,113 +836,6 @@ public:
 public:
     void nextPermutation(vector&lt;int&gt;&amp; nums) {
         if(!next_permutation(nums.begin(),nums.end())) sort(nums.begin(),nums.end());
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[[LeetCode每日刷题]2020.09.17]]></title>
-        <id>https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200917/</id>
-        <link href="https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200917/">
-        </link>
-        <updated>2020-09-17T14:08:47.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>No.15 三数之和<br>
-给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。<br>
-注意：答案中不可以包含重复的三元组。</p>
-</blockquote>
-<p>（参考LeetCode题解）<br>
-首先进行排序，然后用双指针求解，这种方法能够<strong>去除重复解</strong><br>
-复杂度O(NlogN)</p>
-<p>代码：</p>
-<pre><code>class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) {
-        sort(nums.begin(),nums.end());
-        vector&lt;vector&lt;int&gt;&gt;ans;
-        if(nums.size()&lt;3) return ans;
-        for(int i=0;i&lt;nums.size();i++){
-            if(nums[i]&gt;0) return ans;
-            if(i&gt;0 &amp;&amp; nums[i]==nums[i-1]) continue;
-            int l=i+1,r=nums.size()-1;
-            while(l&lt;r){
-                if(nums[i]+nums[l]+nums[r]==0){
-                    ans.push_back(vector&lt;int&gt;({nums[i],nums[l],nums[r]}));
-                    while(l&lt;r &amp;&amp; nums[l]==nums[l+1]) l++;
-                    while(l&lt;r &amp;&amp; nums[r]==nums[r-1]) r--;
-                    l++,r--;
-                }else{
-                    if(nums[i]+nums[l]+nums[r]&gt;0) r--;
-                    else l++;
-                }
-            }
-        }
-        return ans;
-    }
-};
-</code></pre>
-<blockquote>
-<p>No.11 盛最多水的容器<br>
-给你 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
-</blockquote>
-<p>双指针分别在左右端点，每次的解是min(a[l],a[r])*(r-l)，可以考虑到当左右端点移动时，底长会变小，而使答案变大的唯一可能是选择移动的端点是高度会变高的点<br>
-复杂度O(N)</p>
-<pre><code>class Solution {
-public:
-    int maxArea(vector&lt;int&gt;&amp; height) {
-        int l=0,r=height.size()-1;
-        int ans=0;
-        while(l&lt;=r){
-            ans=max(ans,min(height[l],height[r])*(r-l));
-            if(height[l]&gt;height[r]) r--;
-            else l++;
-        }
-        return ans;
-    }
-};
-</code></pre>
-<blockquote>
-<p>No.685 冗余连接 II<br>
-在本问题中，有根树指满足以下条件的有向图。该树只有一个根节点，所有其他节点都是该根节点的后继。每一个节点只有一个父节点，除了根节点没有父节点。<br>
-输入一个有向图，该图由一个有着N个节点 (节点值不重复1, 2, ..., N) 的树及一条附加的边构成。附加的边的两个顶点包含在1到N中间，这条附加的边不属于树中已存在的边。<br>
-结果图是一个以边组成的二维数组。 每一个边 的元素是一对 [u, v]，用以表示有向图中连接顶点 u 和顶点 v 的边，其中 u 是 v 的一个父节点。<br>
-返回一条能删除的边，使得剩下的图是有N个节点的有根树。若有多个答案，返回最后出现在给定二维数组的答案。</p>
-</blockquote>
-<p>最多1000个顶点，也就是最多1000条边，每次从后到前选择一个边进行删除，检查删除后的图是否符合无环且所有端点连通形成有根树<br>
-复杂度O(N^2)</p>
-<pre><code>class Solution {
-public:
-    int fa[1005];
-    int cnt[1005];
-    int get(int x){
-        if(x==fa[x]) return x;
-        return fa[x]=get(fa[x]);
-    }
-    void merge(int x,int y){
-        fa[get(x)]=get(y);
-    }
-    bool check(int x,vector&lt;vector&lt;int&gt;&gt;&amp; edges){
-        for(int i=1;i&lt;=1000;i++) fa[i]=i,cnt[i]=0;
-        for(int i=0;i&lt;edges.size();i++){
-            if(i!=x){
-                if(get(edges[i][0])==get(edges[i][1])) return false;
-                merge(edges[i][0],edges[i][1]);
-                cnt[edges[i][1]]++;
-            }
-        }
-        for(int i=1;i&lt;=edges.size();i++) if(cnt[i]&gt;1) return false;
-        int nowr=get(1);
-        int ans=0;
-        for(int i=1;i&lt;=edges.size();i++) if(get(i)==nowr) ans++;
-        return ans==(int)edges.size();
-    }
-    vector&lt;int&gt; findRedundantDirectedConnection(vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
-        for(int i=edges.size()-1;i&gt;=0;i--){
-            if(check(i,edges)) return edges[i];
-        }
-        vector&lt;int&gt;ans;
-        return ans;
     }
 };
 </code></pre>
