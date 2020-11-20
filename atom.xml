@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-11-18T13:36:11.777Z</updated>
+    <updated>2020-11-20T13:40:04.898Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -10,6 +10,20 @@
     <logo>https://938650141.github.io/images/avatar.png</logo>
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
+    <entry>
+        <title type="html"><![CDATA[接口技术复习]]></title>
+        <id>https://938650141.github.io/post/jie-kou-ji-zhu-fu-xi/</id>
+        <link href="https://938650141.github.io/post/jie-kou-ji-zhu-fu-xi/">
+        </link>
+        <updated>2020-11-20T13:39:27.000Z</updated>
+        <content type="html"><![CDATA[<p><img src="https://938650141.github.io/post-images/1605879582952.jpg" alt="" loading="lazy"><br>
+<img src="https://938650141.github.io/post-images/1605879587215.jpg" alt="" loading="lazy"><br>
+<img src="https://938650141.github.io/post-images/1605879590934.jpg" alt="" loading="lazy"><br>
+<img src="https://938650141.github.io/post-images/1605879594166.jpg" alt="" loading="lazy"><br>
+<img src="https://938650141.github.io/post-images/1605879597400.jpg" alt="" loading="lazy"><br>
+<img src="https://938650141.github.io/post-images/1605879600607.jpg" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Codeforces Round #684 (Div. 2)]]></title>
         <id>https://938650141.github.io/post/codeforces-round-684-div-2/</id>
@@ -772,72 +786,6 @@ int main()
     return 0;
 }
 
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[[LeetCode每日刷题]2020.09.18]]></title>
-        <id>https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200918/</id>
-        <link href="https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200918/">
-        </link>
-        <updated>2020-09-17T23:44:03.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>No.47 全排列 II<br>
-给定一个可包含重复数字的序列，返回所有不重复的全排列。</p>
-</blockquote>
-<p>排序后用next_permutation()函数即可</p>
-<pre><code>class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; permuteUnique(vector&lt;int&gt;&amp; nums) {
-        vector&lt;vector&lt;int&gt;&gt;ans;
-        sort(nums.begin(),nums.end());
-        do{
-            ans.push_back(nums);
-        }while(next_permutation(nums.begin(),nums.end()));
-        return ans;
-    }
-};
-</code></pre>
-<blockquote>
-<p>No.5 最长回文子串<br>
-给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
-</blockquote>
-<p>dp[i][j]表示i起始j终止的子串是否是回文串<br>
-当j-i=0表示i到j只有一个字符显然是回文串<br>
-当j-i=1表示i到j只有两个字符只需检查这两个字符是否是回文子串<br>
-其余的情况在检查第i个字符和第j个字符是否相同的基础上（首尾字符相同），看一看去掉这两个字符是否是回文子串</p>
-<pre><code>class Solution {
-    public String longestPalindrome(String s) {
-        int n=s.length();
-        boolean[][] dp=new boolean[n][n];
-        String ans=&quot;&quot;;
-        for(int l=0;l&lt;n;l++){
-            for(int i=0;i+l&lt;n;i++){
-                int j=i+l;
-                if(l==0) dp[i][j]=true;
-                else if(l==1) dp[i][j]=(s.charAt(i)==s.charAt(j));
-                else dp[i][j]=(s.charAt(i)==s.charAt(j) &amp;&amp; dp[i+1][j-1]);
-                if(dp[i][j] &amp;&amp; l+1&gt;ans.length()){
-                    ans=s.substring(i,i+l+1);
-                }
-            }
-        }
-        return ans;
-    }
-}
-</code></pre>
-<blockquote>
-<p>No.31 下一个排列<br>
-实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。<br>
-如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。</p>
-</blockquote>
-<p>也是使用next_permutation()</p>
-<pre><code>class Solution {
-public:
-    void nextPermutation(vector&lt;int&gt;&amp; nums) {
-        if(!next_permutation(nums.begin(),nums.end())) sort(nums.begin(),nums.end());
-    }
-};
 </code></pre>
 ]]></content>
     </entry>
