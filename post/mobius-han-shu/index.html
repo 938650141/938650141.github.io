@@ -2,24 +2,21 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>[LeetCode每日刷题]2020.09.18 | 独木舟游四海</title>
+<title>Mobius函数 | 独木舟游四海</title>
 <link rel="shortcut icon" href="https://938650141.github.io/favicon.ico?v=1606704382758">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://938650141.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="[LeetCode每日刷题]2020.09.18 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Mobius函数 | 独木舟游四海 - Atom Feed" href="https://938650141.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-No.47 全排列 II
-给定一个可包含重复数字的序列，返回所有不重复的全排列。
-
-排序后用next_permutation()函数即可
-class Solution {
-public:
-    vector&lt;vector&lt;i..." />
-    <meta name="keywords" content="LeetCode" />
+    <meta name="description" content="//Mobius函数求解代码
+for(int i=1;i&lt;=n;i++) miu[i]=1,v[i]=0;
+    for(int i=2;i&lt;=n;i++){
+        if(v[i]) continue;
+      ..." />
+    <meta name="keywords" content="Mobius" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -75,81 +72,84 @@ public:
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              [LeetCode每日刷题]2020.09.18
+              Mobius函数
             </h2>
             <div class="post-info">
               <span>
-                2020-09-18
+                2020-11-30
               </span>
               <span>
-                3 min read
+                2 min read
               </span>
               
-                <a href="https://938650141.github.io/tag/t5WTedVsn/" class="post-tag">
-                  # LeetCode
+                <a href="https://938650141.github.io/tag/i7yk2c9DR/" class="post-tag">
+                  # Mobius
                 </a>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>No.47 全排列 II<br>
-给定一个可包含重复数字的序列，返回所有不重复的全排列。</p>
-</blockquote>
-<p>排序后用next_permutation()函数即可</p>
-<pre><code>class Solution {
-public:
-    vector&lt;vector&lt;int&gt;&gt; permuteUnique(vector&lt;int&gt;&amp; nums) {
-        vector&lt;vector&lt;int&gt;&gt;ans;
-        sort(nums.begin(),nums.end());
-        do{
-            ans.push_back(nums);
-        }while(next_permutation(nums.begin(),nums.end()));
-        return ans;
-    }
-};
-</code></pre>
-<blockquote>
-<p>No.5 最长回文子串<br>
-给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
-</blockquote>
-<p>dp[i][j]表示i起始j终止的子串是否是回文串<br>
-当j-i=0表示i到j只有一个字符显然是回文串<br>
-当j-i=1表示i到j只有两个字符只需检查这两个字符是否是回文子串<br>
-其余的情况在检查第i个字符和第j个字符是否相同的基础上（首尾字符相同），看一看去掉这两个字符是否是回文子串</p>
-<pre><code>class Solution {
-    public String longestPalindrome(String s) {
-        int n=s.length();
-        boolean[][] dp=new boolean[n][n];
-        String ans=&quot;&quot;;
-        for(int l=0;l&lt;n;l++){
-            for(int i=0;i+l&lt;n;i++){
-                int j=i+l;
-                if(l==0) dp[i][j]=true;
-                else if(l==1) dp[i][j]=(s.charAt(i)==s.charAt(j));
-                else dp[i][j]=(s.charAt(i)==s.charAt(j) &amp;&amp; dp[i+1][j-1]);
-                if(dp[i][j] &amp;&amp; l+1&gt;ans.length()){
-                    ans=s.substring(i,i+l+1);
-                }
-            }
+                <pre><code>//Mobius函数求解代码
+for(int i=1;i&lt;=n;i++) miu[i]=1,v[i]=0;
+    for(int i=2;i&lt;=n;i++){
+        if(v[i]) continue;
+        miu[i]=-1;
+        for(int j=2*i;j&lt;=n;j+=i){
+            v[j]=1;
+            if((j/i)%i==0) miu[j]=0;
+            else miu[j]*=-1;
         }
-        return ans;
     }
-}
 </code></pre>
-<blockquote>
-<p>No.31 下一个排列<br>
-实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。<br>
-如果不存在下一个更大的排列，则将数字重新排列成最小的排列（即升序排列）。</p>
-</blockquote>
-<p>也是使用next_permutation()</p>
-<pre><code>class Solution {
-public:
-    void nextPermutation(vector&lt;int&gt;&amp; nums) {
-        if(!next_permutation(nums.begin(),nums.end())) sort(nums.begin(),nums.end());
+<figure data-type="image" tabindex="1"><img src="https://938650141.github.io/post-images/1606704338830.jpg" alt="例题" loading="lazy"></figure>
+<pre><code>#include&lt;cstdio&gt;
+using namespace std;
+const int N=(int)1e6+5;
+int n;
+int miu[N];
+int v[N];
+
+long long f(int x){
+    int ans=0;
+    while(x){
+        ans+=x%10;
+        x/=10;
     }
-};
+    return ans;
+}
+
+long long g(int x){
+    int ans=1;
+    while(x){
+        ans*=x%10;
+        x/=10;
+    }
+    return ans;
+}
+
+int main(){
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++) miu[i]=1,v[i]=0;
+    for(int i=2;i&lt;=n;i++){
+        if(v[i]) continue;
+        miu[i]=-1;
+        for(int j=2*i;j&lt;=n;j+=i){
+            v[j]=1;
+            if((j/i)%i==0) miu[j]=0;
+            else miu[j]*=-1;
+        }
+    }
+    long long ans=0;
+    for(int i=1;i&lt;=n;i++){
+        for(int j=i;j&lt;=n;j+=i){
+            ans+=(long long)miu[i]*(n/i-j/i+1)*g(j);
+            ans+=(long long)miu[i]*(j/i)*f(j);
+        }
+    }
+    printf(&quot;%lld&quot;,ans);
+    return 0;
+}
 </code></pre>
 
               </div>
@@ -163,9 +163,9 @@ public:
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200917/">
+            <a href="https://938650141.github.io/post/jie-kou-ji-zhu-fu-xi/">
               <h3 class="post-title">
-                [LeetCode每日刷题]2020.09.17
+                接口技术复习
               </h3>
             </a>
           </div>

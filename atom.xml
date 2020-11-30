@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-11-20T13:40:04.898Z</updated>
+    <updated>2020-11-30T02:46:28.986Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -10,6 +10,75 @@
     <logo>https://938650141.github.io/images/avatar.png</logo>
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
+    <entry>
+        <title type="html"><![CDATA[Mobius函数]]></title>
+        <id>https://938650141.github.io/post/mobius-han-shu/</id>
+        <link href="https://938650141.github.io/post/mobius-han-shu/">
+        </link>
+        <updated>2020-11-30T02:44:14.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>//Mobius函数求解代码
+for(int i=1;i&lt;=n;i++) miu[i]=1,v[i]=0;
+    for(int i=2;i&lt;=n;i++){
+        if(v[i]) continue;
+        miu[i]=-1;
+        for(int j=2*i;j&lt;=n;j+=i){
+            v[j]=1;
+            if((j/i)%i==0) miu[j]=0;
+            else miu[j]*=-1;
+        }
+    }
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://938650141.github.io/post-images/1606704338830.jpg" alt="例题" loading="lazy"></figure>
+<pre><code>#include&lt;cstdio&gt;
+using namespace std;
+const int N=(int)1e6+5;
+int n;
+int miu[N];
+int v[N];
+
+long long f(int x){
+    int ans=0;
+    while(x){
+        ans+=x%10;
+        x/=10;
+    }
+    return ans;
+}
+
+long long g(int x){
+    int ans=1;
+    while(x){
+        ans*=x%10;
+        x/=10;
+    }
+    return ans;
+}
+
+int main(){
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++) miu[i]=1,v[i]=0;
+    for(int i=2;i&lt;=n;i++){
+        if(v[i]) continue;
+        miu[i]=-1;
+        for(int j=2*i;j&lt;=n;j+=i){
+            v[j]=1;
+            if((j/i)%i==0) miu[j]=0;
+            else miu[j]*=-1;
+        }
+    }
+    long long ans=0;
+    for(int i=1;i&lt;=n;i++){
+        for(int j=i;j&lt;=n;j+=i){
+            ans+=(long long)miu[i]*(n/i-j/i+1)*g(j);
+            ans+=(long long)miu[i]*(j/i)*f(j);
+        }
+    }
+    printf(&quot;%lld&quot;,ans);
+    return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[接口技术复习]]></title>
         <id>https://938650141.github.io/post/jie-kou-ji-zhu-fu-xi/</id>
@@ -720,72 +789,6 @@ class Solution {
         return s.pop();
     }
 }
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[[HackerRank]Reverse Shuffle Merge题解]]></title>
-        <id>https://938650141.github.io/post/hackerrankreverse-shuffle-merge-ti-jie/</id>
-        <link href="https://938650141.github.io/post/hackerrankreverse-shuffle-merge-ti-jie/">
-        </link>
-        <updated>2020-09-19T02:21:36.000Z</updated>
-        <content type="html"><![CDATA[<p>给定一个字符串的翻转字符串和乱序字符串，然后按照两个字符串的顺序不变的情况下进行合并得到一个合并字符串。<br>
-询问合并字符串中字典序最小的原字符串。<br>
-根据题意原字符串中的每个字符必定在给定的合并字符串中出现两次。<br>
-所以统计合并字符串中每个字符的出现次数，最后将每个字符的出现次数/2就是原字符串中所有的字符。<br>
-但问题在于如何确定最小字典序原字符串字符的顺序。<br>
-我的解决策略是通过二分每次找到最小的合法的位置能使其左侧字符均包含当前需要的所有字符，然后只需要从小到大字符的队列，将其合法右侧的字符位置出队，判断需要当前字符，当前字符的最大位置是否在合法区间中，如果找到就进行下一次的二分合法区间，找寻下一个字符。</p>
-<pre><code>#include &lt;bits/stdc++.h&gt;
-
-using namespace std;
-
-// Complete the reverseShuffleMerge function below.
-int cnt[26];
-int sum[10005][26];
-queue&lt;int&gt;q[26];
-bool check(int x){
-    for(int i=0;i&lt;26;i++) if(sum[x][i]&lt;cnt[i]) return false;
-    return true;
-}
-string reverseShuffleMerge(string s) {
-    for(int i=0;i&lt;(int)s.size();i++){
-        cnt[s[i]-'a']++;
-        sum[i][s[i]-'a']++;
-        for(int j=0;j&lt;26;j++) if(i!=0) sum[i][j]+=sum[i-1][j];
-    }
-    for(int i=(int)s.size()-1;i&gt;=0;i--) q[s[i]-'a'].push(i);
-    for(int i=0;i&lt;26;i++) cnt[i]/=2;
-    string ans;
-    int a=(int)s.size()/2;
-    int last=s.size()-1;
-    while(a--){
-        int l=0,r=last,pos=r;
-        while(l&lt;=r){
-            int m=(l+r)/2;
-            if(check(m)) pos=m,r=m-1;
-            else l=m+1;
-        }
-        for(int i=0;i&lt;26;i++){
-            while(q[i].size() &amp;&amp; q[i].front()&gt;last) q[i].pop();
-            if(cnt[i]&gt;0 &amp;&amp; q[i].size() &amp;&amp; q[i].front()&gt;=pos) {
-                ans+=(char)('a'+i);
-                cnt[i]--;
-                last=q[i].front()-1;
-                break;
-            }
-        }
-    }
-    return ans;
-}
-
-int main()
-{
-    string s;
-    cin&gt;&gt;s;
-    cout&lt;&lt;reverseShuffleMerge(s);
-    return 0;
-}
-
 </code></pre>
 ]]></content>
     </entry>
