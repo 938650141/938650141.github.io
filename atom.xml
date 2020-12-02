@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-11-30T02:46:28.986Z</updated>
+    <updated>2020-12-02T05:26:41.966Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -10,6 +10,91 @@
     <logo>https://938650141.github.io/images/avatar.png</logo>
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
+    <entry>
+        <title type="html"><![CDATA[排列组合]]></title>
+        <id>https://938650141.github.io/post/pai-lie-zu-he/</id>
+        <link href="https://938650141.github.io/post/pai-lie-zu-he/">
+        </link>
+        <updated>2020-12-02T04:42:31.000Z</updated>
+        <content type="html"><![CDATA[<p>n个物品分给m个人，每人最少分1个<br>
+C(n-1,m-1)，n-1个空选出m-1个即可</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int f[1000005];
+int inv[1000005];
+const int mod=998244353;
+
+int qpow(int a,int b){
+	a%=mod;
+	int ans=1;
+	while(b){
+		if(b&amp;1) ans=((long long)ans*a)%mod;
+		b&gt;&gt;=1;
+		a=((long long)a*a)%mod;
+	}
+	return ans;
+}
+
+int main(){
+	f[0]=1;
+	inv[0]=1;
+	for(int i=1;i&lt;=1000000;i++) f[i]=((long long)f[i-1]*i)%mod;
+	for(int i=1;i&lt;=1000000;i++) inv[i]=qpow(f[i],mod-2);
+	int t;
+	cin&gt;&gt;t;
+	while(t--){
+		int n,m;
+		scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+		int ans=1;
+		ans=((long long)f[n-1]*inv[m-1])%mod;
+		ans=((long long)ans*inv[n-m])%mod;
+		printf(&quot;%d\n&quot;,ans);
+	}
+	return 0;
+}
+</code></pre>
+<p>n个物品分给m个人，允许为空<br>
+则人为地填充n个物品，使其满足隔板法要求，再人为地将每个人扣除一个物品，是等价的效果<br>
+C(n+m-1,m-1)</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int f[2000005];
+int inv[2000005];
+const int mod=998244353;
+
+int qpow(int a,int b){
+	a%=mod;
+	int ans=1;
+	while(b){
+		if(b&amp;1) ans=((long long)ans*a)%mod;
+		b&gt;&gt;=1;
+		a=((long long)a*a)%mod;
+	}
+	return ans;
+}
+
+int main(){
+	f[0]=1;
+	inv[0]=1;
+	for(int i=1;i&lt;=2000000;i++) f[i]=((long long)f[i-1]*i)%mod;
+	for(int i=1;i&lt;=2000000;i++) inv[i]=qpow(f[i],mod-2);
+	int t;
+	cin&gt;&gt;t;
+	while(t--){
+		int n,m;
+		scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+		int ans=1;
+		ans=((long long)f[n+m-1]*inv[m-1])%mod;
+		ans=((long long)ans*inv[n])%mod;
+		printf(&quot;%d\n&quot;,ans);
+	}
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Mobius函数]]></title>
         <id>https://938650141.github.io/post/mobius-han-shu/</id>
@@ -685,111 +770,6 @@ vector&lt;string&gt; split_string(string input_string) {
 </code></pre>
 <hr>
 <p>*https://www.geeksforgeeks.org/k-difference-permutation/</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[[LeetCode每日刷题]2020.09.19]]></title>
-        <id>https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200919/</id>
-        <link href="https://938650141.github.io/post/leetcode-mei-ri-shua-ti-20200919/">
-        </link>
-        <updated>2020-09-19T02:35:45.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>No.404 左叶子之和<br>
-计算给定二叉树的所有左叶子之和。</p>
-</blockquote>
-<p>递归一遍，如果左右儿子不存在且当前结点是父亲节点的左儿子就加上当前结点的数字，最后返回答案即可。</p>
-<pre><code>/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-class Solution {
-public:
-    int ans=0;
-    void dfs(TreeNode* o,int w){
-        if(o-&gt;left==nullptr &amp;&amp; o-&gt;right==nullptr){
-            if(w==1) ans+=o-&gt;val;
-        }else{
-            if(o-&gt;left!=nullptr) dfs(o-&gt;left,1);
-            if(o-&gt;right!=nullptr) dfs(o-&gt;right,0);
-        }
-    }
-    int sumOfLeftLeaves(TreeNode* root) {
-        if(root==nullptr) return 0;
-        dfs(root,-1);
-        return ans;
-    }
-};
-</code></pre>
-<blockquote>
-<p>No.2 两数相加<br>
-给定两个链表代表两个数，求两个数求和后的链表</p>
-</blockquote>
-<pre><code>/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode p=l1,q=l2,cur=dummyHead;
-        int carry=0;
-        while(p!=null || q!=null){
-            int x=(p!=null)?p.val:0;
-            int y=(q!=null)?q.val:0;
-            int sum=carry+x+y;
-            carry=sum/10;
-            cur.next=new ListNode(sum%10);
-            cur=cur.next;
-            if(p!=null) p=p.next;
-            if(q!=null) q=q.next;
-        }
-        if(carry!=0) cur.next=new ListNode(carry);
-        return dummyHead.next;
-    }
-}
-</code></pre>
-<blockquote>
-<p>No.150 逆波兰表达式求值</p>
-</blockquote>
-<p>栈的应用</p>
-<pre><code>class Solution {
-    public int evalRPN(String[] tokens) {
-        Stack&lt;Integer&gt; s=new Stack&lt;&gt;();
-        Integer a,b;
-        for(int i=0;i&lt;tokens.length;i++){
-            if(tokens[i].equals(&quot;+&quot;)){
-                a=s.pop();
-                b=s.pop();
-                s.push(a+b);
-            }else if(tokens[i].equals(&quot;-&quot;)){
-                a=s.pop();
-                b=s.pop();
-                s.push(b-a);
-            }else if(tokens[i].equals(&quot;*&quot;)){
-                a=s.pop();
-                b=s.pop();
-                s.push(a*b);
-            }else if(tokens[i].equals(&quot;/&quot;)){
-                a=s.pop();
-                b=s.pop();
-                s.push(b/a);
-            }else{
-                s.push(Integer.valueOf(tokens[i]));
-            }
-        }
-        return s.pop();
-    }
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>
