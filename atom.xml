@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://938650141.github.io</id>
     <title>独木舟游四海</title>
-    <updated>2020-12-03T12:17:51.839Z</updated>
+    <updated>2020-12-03T12:27:13.886Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://938650141.github.io"/>
     <link rel="self" href="https://938650141.github.io/atom.xml"/>
@@ -10,6 +10,15 @@
     <logo>https://938650141.github.io/images/avatar.png</logo>
     <icon>https://938650141.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 独木舟游四海</rights>
+    <entry>
+        <title type="html"><![CDATA[刷题导航]]></title>
+        <id>https://938650141.github.io/post/shua-ti-dao-hang/</id>
+        <link href="https://938650141.github.io/post/shua-ti-dao-hang/">
+        </link>
+        <updated>2020-12-03T12:26:00.000Z</updated>
+        <content type="html"><![CDATA[<p>111</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ZOJ4114]]></title>
         <id>https://938650141.github.io/post/zoj4114/</id>
@@ -955,160 +964,6 @@ public:
         if(root==nullptr) return ans;
         dfs(root,sum,{},0);
         return ans;
-    }
-};
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[[LeetCode双周赛]第35场双周赛]]></title>
-        <id>https://938650141.github.io/post/leetcode-shuang-zhou-sai-di-35-chang-shuang-zhou-sai/</id>
-        <link href="https://938650141.github.io/post/leetcode-shuang-zhou-sai-di-35-chang-shuang-zhou-sai/">
-        </link>
-        <updated>2020-09-20T00:21:09.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<ol start="5503">
-<li>所有奇数长度子数组的和<br>
-给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。<br>
-子数组 定义为原数组中的一个连续子序列。<br>
-请你返回 arr 中 所有奇数长度子数组的和 。</li>
-</ol>
-</blockquote>
-<p>只需循环左端点的基础上循环右端点并维护左端点为起点右端点为重点的区间和，判断区间长度为奇书则加入到答案中。</p>
-<pre><code>class Solution {
-public:
-    int sumOddLengthSubarrays(vector&lt;int&gt;&amp; arr) {
-        int ans=0;
-        for(int i=0;i&lt;arr.size();i++){
-            int sum=0;
-            for(int j=i;j&lt;arr.size();j++){
-                sum+=arr[j];
-                if((j-i)%2==0) ans+=sum;
-            }
-        }
-        return ans;
-    }
-};
-</code></pre>
-<blockquote>
-<ol start="5505">
-<li>所有排列中的最大和<br>
-有一个整数数组 nums ，和一个查询数组 requests ，其中 requests[i] = [start<sub>i</sub>, end<sub>i</sub>] 。第 i 个查询求 nums[start<sub>i</sub>] + nums[start<sub>i</sub> + 1] + ... + nums[end<sub>i</sub> - 1] + nums[end<sub>i</sub>] 的结果 ，start<sub>i</sub> 和 end<sub>i</sub> 数组索引都是 从 0 开始 的。<br>
-你可以任意排列 nums 中的数字，请你返回所有查询结果之和的最大值。<br>
-由于答案可能会很大，请你将它对 109 + 7 取余 后返回。</li>
-</ol>
-</blockquote>
-<p>实际上是每次选取多个nums里的某个区间进行求和，如果从单个元素的贡献来看，如果某个位置被覆盖的次数最多，如果想要答案最大，则这个元素是nums里最大的数字。根据这个思路只需要统计每个位置被覆盖的次数，然后排序被统计的次数，再排序nums，这两者相同位置相乘求和即可。</p>
-<pre><code>class Solution {
-public:
-    long long a[100005];
-    int maxSumRangeQuery(vector&lt;int&gt;&amp; nums, vector&lt;vector&lt;int&gt;&gt;&amp; requests) {
-        long long ans=0;
-        int mod=(int)1e9+7;
-        for(int i=0;i&lt;requests.size();i++) a[requests[i][0]+1]++,a[requests[i][1]+2]--;
-        int n=nums.size();
-        for(int i=1;i&lt;=n;i++) a[i]+=a[i-1];
-        vector&lt;long long&gt;v;
-        sort(nums.begin(),nums.end());
-        for(int i=1;i&lt;=n;i++) v.push_back(a[i]);
-        sort(v.begin(),v.end());
-        for(int i=0;i&lt;n;i++) ans=(ans+v[i]*(nums[i]))%mod;
-        return ans;
-    }
-};
-</code></pre>
-<blockquote>
-<ol start="5504">
-<li>使数组和能被 P 整除<br>
-给你一个正整数数组 nums，请你移除 最短 子数组（可以为 空），使得剩余元素的 和 能被 p 整除。 不允许 将整个数组都移除。<br>
-请你返回你需要移除的最短子数组，如果无法满足题目要求，返回 -1 。<br>
-子数组 定义为原数组中连续的一组元素。</li>
-</ol>
-</blockquote>
-<p>如果要让数组和能被P整除，反过来就是找一段子区间的和是(数组和%p)</p>
-<pre><code>class Solution {
-public:
-    unordered_map&lt;int,int&gt;mp;
-    long long sum[100005];
-    int minSubarray(vector&lt;int&gt;&amp; nums, int p) {
-        long long a=0;
-        for(int i=0;i&lt;nums.size();i++) sum[i+1]=nums[i],a+=nums[i];
-        a%=p;
-        if(a==0) return 0;
-        int n=nums.size();
-        int ans=0x3f3f3f3f;
-        mp[0]=0;
-        for(int i=1;i&lt;=n;i++){
-            sum[i]+=sum[i-1];
-            sum[i]%=p;
-            if(mp.find((sum[i]-a+p)%p)!=mp.end()){
-                ans=min(ans,i-mp[(sum[i]-a+p)%p]);
-            }
-            mp[sum[i]]=i;
-        }
-        return ((ans==0x3f3f3f3f)||(ans==n))?-1:ans;
-    }
-};
-</code></pre>
-<blockquote>
-<ol start="5506">
-<li>奇怪的打印机 II<br>
-给你一个奇怪的打印机，它有如下两个特殊的打印规则：<br>
-每一次操作时，打印机会用同一种颜色打印一个矩形的形状，每次打印会覆盖矩形对应格子里原本的颜色。<br>
-一旦矩形根据上面的规则使用了一种颜色，那么 相同的颜色不能再被使用 。<br>
-给你一个初始没有颜色的 m x n 的矩形 targetGrid ，其中 targetGrid[row][col] 是位置 (row, col) 的颜色。<br>
-如果你能按照上述规则打印出矩形 targetGrid ，请你返回 true ，否则返回 false 。</li>
-</ol>
-</blockquote>
-<p>我的想法是每次找到一个矩形，然后将其全部变成通用颜色，直到找不到为止，如果最后全部方块都是通用颜色则说明true否则false。</p>
-<pre><code>class Solution {
-public:
-    int mnh[100],mxh[100],mnl[100],mxl[100];
-    int pic[105][105];
-    int vis[105];
-    bool isPrintable(vector&lt;vector&lt;int&gt;&gt;&amp; targetGrid) {
-        for(int i=1;i&lt;=60;i++) mnh[i]=0x3f3f3f3f,mnl[i]=0x3f3f3f3f;
-        for(int i=1;i&lt;=60;i++) mxh[i]=0xcfcfcfcf,mxl[i]=0xcfcfcfcf;
-        for(int i=0;i&lt;targetGrid.size();i++){
-            for(int j=0;j&lt;targetGrid[i].size();j++){
-                int now=targetGrid[i][j];
-                mnh[now]=min(mnh[now],i+1);
-                mxh[now]=max(mxh[now],i+1);
-                mnl[now]=min(mnl[now],j+1);
-                mxl[now]=max(mxl[now],j+1);
-                pic[i+1][j+1]=targetGrid[i][j];
-            }
-        }
-        bool flag=true;
-        while(flag){
-            flag=false;
-            for(int i=1;i&lt;=60;i++){
-                bool isSq=true;
-                if(mxh[i]-mnh[i]&lt;0 || mxl[i]-mnl[i]&lt;0) isSq=false;
-                for(int j=mnh[i];j&lt;=mxh[i];j++){
-                    for(int k=mnl[i];k&lt;=mxl[i];k++){
-                        if(pic[j][k]!=i &amp;&amp; pic[j][k]!=100 ) isSq=false;
-                    }
-                }
-                if(isSq){
-                    flag=true;
-                    for(int j=mnh[i];j&lt;=mxh[i];j++){
-                        for(int k=mnl[i];k&lt;=mxl[i];k++){
-                            pic[j][k]=100;
-                        }
-                    }
-                    mnh[i]=0x3f3f3f3f,mnl[i]=0x3f3f3f3f;
-                    mxh[i]=0xcfcfcfcf,mxl[i]=0xcfcfcfcf;
-                }
-            }
-        }
-        int n=(int)targetGrid.size();
-        int m=(int)targetGrid[0].size();
-        bool ok=true;
-        for(int i=1;i&lt;=n;i++)
-            for(int j=1;j&lt;=m;j++)
-                if(pic[i][j]!=100) ok=false;
-        return ok;
     }
 };
 </code></pre>
